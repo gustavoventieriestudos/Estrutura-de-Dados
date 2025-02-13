@@ -15,6 +15,10 @@ public class Main {
         ED.adiciona(2);
         ED.adiciona(2);
         ED.adiciona(2);
+        ED.adiciona(2);
+        ED.adiciona(2);
+        ED.adiciona(2);
+        ED.adiciona(2);
 
 
         // Funcionanando
@@ -25,6 +29,11 @@ public class Main {
 
         System.out.println(ED.vazio());
         System.out.println(ED.tamanho());
+
+
+
+
+        ED.adiciona(1,5);
 
         //
     }
