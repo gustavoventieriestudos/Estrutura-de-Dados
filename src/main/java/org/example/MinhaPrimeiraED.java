@@ -5,7 +5,7 @@ public class MinhaPrimeiraED
     private Object[] objetos = new Object[10];
     public int totalDeObjetos = 0;
 
-    // Quase certo
+    // certo
     public void adiciona(int posicao, Object objeto) {
         if (posicaoValida(posicao) && !posicaoOcupada(posicao) && !cheio()) {
             for (int i = totalDeObjetos; i > posicao; i--) {
@@ -14,20 +14,23 @@ public class MinhaPrimeiraED
             objetos[posicao] = objeto;
             totalDeObjetos++;
 
-        } else if (posicaoValida(posicao) && posicaoOcupada(posicao)) {
-            if(cheio()){
+
+        } else if (posicaoValida(posicao) && posicaoOcupada(posicao) && cheio()) {
+
                 for (int i = totalDeObjetos; i > posicao; i--) {
                     objetos[i] = objetos[i - 1];
                 }
                 objetos[posicao] = objeto;
                 totalDeObjetos++;
-            }
+
+            } else if (posicaoValida(posicao) && posicaoOcupada(posicao)) {
 
             for (int i = totalDeObjetos; i > posicao; i--) {
                 objetos[i] = objetos[i - 1];
             }
             objetos[posicao] = objeto;
             totalDeObjetos++;
+
 
         }
     }
@@ -47,6 +50,7 @@ public class MinhaPrimeiraED
         return posicao >= 0 && posicao < objetos.length;
     }
 
+    // certo
     public void remove(int posicao) {
         if (posicaoValida(posicao) && posicaoOcupada(posicao)) {
             for (int i = posicao; i < totalDeObjetos - 1; i++) {
@@ -57,25 +61,32 @@ public class MinhaPrimeiraED
         }
     }
 
+    // certo
     public boolean contem(Object objeto) {
 
         for(int i = 0; i < totalDeObjetos; i++){
+            if(objetos[i] == null) return false;
             if(objetos[i].equals(objeto)) return true;
         }
         return false;
     }
 
+
+    // certo
     public Object getObjeto(int posicao) {
 
         if (posicaoValida(posicao) && posicaoOcupada(posicao)) return objetos[posicao];
 
-        return false;
+        return (Object) false;
     }
 
+
+    // certo
     public int tamanho() {
         return totalDeObjetos;
     }
 
+    // certo
     public boolean cheio() {
         if(totalDeObjetos == objetos.length){
             Object[] novoObjeto = new Object[objetos.length * 2];
@@ -88,6 +99,7 @@ public class MinhaPrimeiraED
         return false;
     }
 
+    // certo
     public boolean vazio() {
         return totalDeObjetos == 0;
     }
