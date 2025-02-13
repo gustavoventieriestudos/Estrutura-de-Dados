@@ -5,29 +5,22 @@ public class MinhaPrimeiraED
     private Object[] objetos = new Object[10];
     public int totalDeObjetos = 0;
 
-    // Não está funcionando
+    // Quase certo
     public void adiciona(int posicao, Object objeto) {
-        if (posicaoValida(posicao) && totalDeObjetos < objetos.length) {
+        if (posicaoValida(posicao) && !posicaoOcupada(posicao) && !cheio()) {
             for (int i = totalDeObjetos; i > posicao; i--) {
                 objetos[i] = objetos[i - 1];
             }
             objetos[posicao] = objeto;
             totalDeObjetos++;
-     
-        } else if (posicaoValida(posicao) && posicaoOcupada(posicao)) {
-            if(totalDeObjetos == objetos.length){
-                Object[] novoVetor = new Object[objetos.length * 2];
-                for (int i = 0; i < objetos.length; i++) {
-                    novoVetor[i] = objetos[i];
-                }
-                objetos = novoVetor;
 
+        } else if (posicaoValida(posicao) && posicaoOcupada(posicao)) {
+            if(cheio()){
                 for (int i = totalDeObjetos; i > posicao; i--) {
                     objetos[i] = objetos[i - 1];
                 }
                 objetos[posicao] = objeto;
                 totalDeObjetos++;
-                System.out.println("posicao oc +10");
             }
 
             for (int i = totalDeObjetos; i > posicao; i--) {
@@ -36,12 +29,11 @@ public class MinhaPrimeiraED
             objetos[posicao] = objeto;
             totalDeObjetos++;
 
-            System.out.println("posicao oc -10");
         }
     }
 
     public void adiciona(Object objeto) {
-        if(totalDeObjetos != objetos.length){
+        if(!cheio()){
             objetos[totalDeObjetos] = objeto;
             totalDeObjetos++;
         }
