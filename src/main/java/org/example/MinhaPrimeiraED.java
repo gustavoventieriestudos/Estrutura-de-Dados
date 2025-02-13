@@ -35,6 +35,7 @@ public class MinhaPrimeiraED
         }
     }
 
+    // certo
     public void adiciona(Object objeto) {
         if(!cheio()){
             objetos[totalDeObjetos] = objeto;
@@ -42,10 +43,12 @@ public class MinhaPrimeiraED
         }
     }
 
+    // certo
     public boolean posicaoOcupada(int posicao) {
         return objetos[posicao] != null;
     }
 
+    // certo
     public boolean posicaoValida(int posicao) {
         return posicao >= 0 && posicao < objetos.length;
     }
