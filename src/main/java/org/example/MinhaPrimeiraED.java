@@ -5,6 +5,15 @@ public class MinhaPrimeiraED
     private Object[] objetos = new Object[10];
     public int totalDeObjetos = 0;
 
+    /*
+
+        A operação public void adiciona(int posicao, Object objeto){..}
+        deve adicionar um objeto numa determinada posição do vetor.
+        Caso a posição esteja ocupada, deslocar os elementos uma posição à direita para
+        não sobrepor o novo objeto.
+
+    */
+
     public void adiciona(int posicao, Object objeto) {
         if (posicaoValida(posicao)){
             if(posicaoOcupada(posicao)){
@@ -32,7 +41,17 @@ public class MinhaPrimeiraED
             }
         }
 
+        System.out.println("Posição informada invalida");
+
     }
+
+    /*
+
+        A operação public void adiciona(Object objeto){..}
+        deve adicionar elementos no vetor respeitando a ordem do índice.
+        Caso não haja mais posições válidas, não adicionar.
+
+    */
 
     public void adiciona(Object objeto) {
         if(!cheio()){
@@ -41,14 +60,39 @@ public class MinhaPrimeiraED
         }
     }
 
+    /*
+
+        A operação private boolean posicaoOcupada(int posicao){..}
+        deve verificar se a posição está ou não ocupada.
+        Retornar True para ocupada e False para livre.
+
+    */
+
     private boolean posicaoOcupada(int posicao) {
         return objetos[posicao] != null;
     }
+
+    /*
+
+        A operação private boolean posicaoValida(int posicao){..},
+        deve retornar True se a posição for válida.
+        Uma posição é válida se estiver entre os índices 0 e a última posição ocupada do vetor.
+
+    */
 
     private boolean posicaoValida(int posicao) {
         return posicao >= 0 && posicao < objetos.length;
     }
 
+     /*
+
+        A operação public void remove(int posicao){..}
+        deve remover o elemento de uma determinada posição do vetor.
+        No entanto, como a sequência dos índices não poderá ser pulada,
+        se houver elementos nas posições à direita do vetor, você deverá
+        deslocar todos os elementos para uma posição anterior.
+
+    */
 
     public void remove(int posicao) {
         if (posicaoValida(posicao) && posicaoOcupada(posicao)) {
@@ -60,6 +104,13 @@ public class MinhaPrimeiraED
         }
     }
 
+     /*
+
+        A operação public boolean contem(Object objeto){..}
+        deve retornar True se o objeto pesquisado for encontrado no vetor.
+        Implemente uma pesquisa linear conforme vimos em classe.
+
+     */
 
     public boolean contem(Object objeto) {
 
@@ -70,7 +121,12 @@ public class MinhaPrimeiraED
         return false;
     }
 
+    /*
 
+        A operação public Object getObjeto(int posicao){...}
+        deve retornar o objeto de uma determinada posição.
+
+     */
 
     public Object getObjeto(int posicao) {
 
@@ -79,12 +135,32 @@ public class MinhaPrimeiraED
         return (Object) null;
     }
 
+     /*
 
+        A operação public int tamanho(){..}
+        deve retornar quantos elementos existem no vetor.
+
+     */
 
     public int tamanho() {
         return totalDeObjetos;
     }
 
+
+
+    public boolean vazio() {
+        return totalDeObjetos == 0;
+    }
+
+    /*
+
+        Implemente uma operação que verifique se o vetor está cheio.
+        O vetor estará cheio quando o total de objetos é igual ao tamanho do vetor.
+        Sempre que o vetor estiver cheio, criar um novo vetor cujo tamanho deve
+        ser o dobro do anterior, copiar os elementos para o novo vetor.
+        Com esta operação, as operações adiciona sempre vão funcionar.
+
+     */
 
     public boolean cheio() {
         if(totalDeObjetos == objetos.length){
@@ -96,9 +172,5 @@ public class MinhaPrimeiraED
             return true;
         }
         return false;
-    }
-
-    public boolean vazio() {
-        return totalDeObjetos == 0;
     }
 }
