@@ -42,13 +42,13 @@ public class MinhaPrimeiraED {
                     }
                     objetos[posicao] = objeto;
                     totalDeObjetos++;
-                }
+                } else {
                     for (int i = totalDeObjetos; i > posicao; i--) {
                         objetos[i] = objetos[i - 1];
                     }
                     objetos[posicao] = objeto;
                     totalDeObjetos++;
-
+                }
 
             } else if (!cheio()) {
                 for (int i = totalDeObjetos; i > posicao; i--) {
