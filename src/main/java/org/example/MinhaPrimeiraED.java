@@ -54,8 +54,14 @@ public class MinhaPrimeiraED
     */
 
     public void adiciona(Object objeto) {
-        if(!cheio()){
-            objetos[totalDeObjetos] = objeto;
+        if (!cheio()) {
+            for(int i = 0; i < objetos.length; i++){
+                if(!posicaoOcupada(i)){
+                    objetos[i] = objeto;
+                    break;
+                }
+            }
+
             totalDeObjetos++;
         }
     }
