@@ -6,8 +6,6 @@ public class MinhaSegundaED {
 
     int total_nomes = 0;
 
-
-
     public int getIndice(String nome) {
 
         if (nome == null || nome.isEmpty()) {
@@ -49,21 +47,26 @@ public class MinhaSegundaED {
 
     public void adiciona(String nome){
         int posicao = getIndice(nome);
+
         if (!posicaoOcupada(posicao)){
             nomes[posicao] = nome;
             total_nomes++;
+        } else {
+            System.out.println("Posição Ocupada");
         }
 
     }
 
     private boolean posicaoOcupada(int posicao){
-            return nomes[posicao] != null && nomes[posicao] != "";
+        return nomes[posicao] != null && nomes[posicao] != "";
     }
 
     public void remove(String nome){
         int posicao = getIndice(nome);
         if (posicaoOcupada(posicao)){
             nomes[posicao] = "";
+        } else {
+            System.out.println("Posição Não Ocupada");
         }
     }
 
@@ -75,7 +78,11 @@ public class MinhaSegundaED {
 
 
     public String getNome(int posicao){
-        return nomes[posicao];
+        if(posicaoOcupada(posicao)){
+            return nomes[posicao];
+        }else {
+            return "Não Há Nome Nessa Posição";
+        }
     }
 
     public int totalNomes(){
