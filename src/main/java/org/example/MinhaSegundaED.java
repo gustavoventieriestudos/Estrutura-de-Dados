@@ -6,27 +6,7 @@ public class MinhaSegundaED {
 
     int total_nomes = 0;
 
-    public void adicionaNome(String nome){
-        int posição = getIndice(nome);
 
-        nomes[posição] = nome;
-
-    }
-
-    public void removeNome(String nome){
-        int posição = getIndice(nome);
-
-        nomes[posição] = null;
-
-    }
-
-    private boolean posicaoOcupada(int posicao){
-        return true;
-    }
-
-    private boolean posicaoValida(int posicao){
-        return true;
-    }
 
     public int getIndice(String nome) {
 
@@ -67,6 +47,33 @@ public class MinhaSegundaED {
         };
     }
 
+    public void adiciona(String nome){
+        int posicao = getIndice(nome);
+        if (!posicaoOcupada(posicao)){
+            nomes[posicao] = nome;
+            total_nomes++;
+        }
+
+    }
+
+    private boolean posicaoOcupada(int posicao){
+            return nomes[posicao] != null && nomes[posicao] != "";
+    }
+
+    public void remove(String nome){
+        int posicao = getIndice(nome);
+        if (posicaoOcupada(posicao)){
+            nomes[posicao] = "";
+        }
+    }
+
+
+    public boolean contem(String nome){
+        int posicao = getIndice(nome);
+        return nomes[posicao] != null && nomes[posicao] != "";
+    }
+
+
     public String getNome(int posicao){
         return nomes[posicao];
     }
@@ -74,7 +81,4 @@ public class MinhaSegundaED {
     public int totalNomes(){
         return total_nomes;
     }
-
-
-
 }
