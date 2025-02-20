@@ -1,0 +1,80 @@
+package org.example;
+
+public class MinhaSegundaED {
+
+    public String[] nomes = new String[26];
+
+    int total_nomes = 0;
+
+    public void adicionaNome(String nome){
+        int posição = getIndice(nome);
+
+        nomes[posição] = nome;
+
+    }
+
+    public void removeNome(String nome){
+        int posição = getIndice(nome);
+
+        nomes[posição] = null;
+
+    }
+
+    private boolean posicaoOcupada(int posicao){
+        return true;
+    }
+
+    private boolean posicaoValida(int posicao){
+        return true;
+    }
+
+    public int getIndice(String nome) {
+
+        if (nome == null || nome.isEmpty()) {
+            return -1;
+        }
+
+        char primeiraLetra = nome.charAt(0);
+
+        return switch (Character.toLowerCase(primeiraLetra)) {
+            case 'a' -> 0;
+            case 'b' -> 1;
+            case 'c' -> 2;
+            case 'd' -> 3;
+            case 'e' -> 4;
+            case 'f' -> 5;
+            case 'g' -> 6;
+            case 'h' -> 7;
+            case 'i' -> 8;
+            case 'j' -> 9;
+            case 'k' -> 10;
+            case 'l' -> 11;
+            case 'm' -> 12;
+            case 'n' -> 13;
+            case 'o' -> 14;
+            case 'p' -> 15;
+            case 'q' -> 16;
+            case 'r' -> 17;
+            case 's' -> 18;
+            case 't' -> 19;
+            case 'u' -> 20;
+            case 'v' -> 21;
+            case 'w' -> 22;
+            case 'x' -> 23;
+            case 'y' -> 24;
+            case 'z' -> 25;
+            default -> -1;
+        };
+    }
+
+    public String getNome(int posicao){
+        return nomes[posicao];
+    }
+
+    public int totalNomes(){
+        return total_nomes;
+    }
+
+
+
+}
