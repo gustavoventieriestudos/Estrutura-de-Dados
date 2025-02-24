@@ -6,6 +6,12 @@ public class MinhaSegundaED {
 
     int total_nomes = 0;
 
+    public boolean validarIndice(int posicao){
+        return posicao != -1 && posicao <= 26;
+    }
+
+
+
     public int getIndice(String nome) {
 
         if (nome == null || nome.isEmpty()) {
@@ -48,41 +54,62 @@ public class MinhaSegundaED {
     public void adiciona(String nome){
         int posicao = getIndice(nome);
 
-        if (!posicaoOcupada(posicao)){
-            nomes[posicao] = nome;
-            total_nomes++;
-        } else {
-            System.out.println("Posição Ocupada");
+        if (!validarIndice(posicao)) {
+            System.out.println("Posição Invalida");
+            return;
         }
+        if (posicaoOcupada(posicao)){
+            System.out.println("Posição Ocupada");
+            return;
+        }
+
+        nomes[posicao] = nome;
+        total_nomes++;
 
     }
 
     private boolean posicaoOcupada(int posicao){
+        if (!validarIndice(posicao)) {
+            System.out.println("Posição Invalida");
+            return false;
+        }
         return nomes[posicao] != null && nomes[posicao] != "";
     }
 
     public void remove(String nome){
         int posicao = getIndice(nome);
-        if (posicaoOcupada(posicao)){
-            nomes[posicao] = "";
-        } else {
-            System.out.println("Posição Não Ocupada");
+        if (!validarIndice(posicao)) {
+            System.out.println("Posição Invalida");
+            return;
         }
+
+        if (!posicaoOcupada(posicao)){
+            System.out.println("Posição Não Ocupada. Impossivel Efetuar A Ação Remover");
+            return;
+        }
+        nomes[posicao] = "";
+
     }
 
 
     public boolean contem(String nome){
         int posicao = getIndice(nome);
+        if (!validarIndice(posicao)) {
+            System.out.println("Posição Invalida");
+            return false;
+        }
         return nomes[posicao] != null && nomes[posicao] != "";
     }
 
 
     public String getNome(int posicao){
-        if(posicaoOcupada(posicao)){
-            return nomes[posicao];
-        }else {
+        if (!validarIndice(posicao) || posicao >= 26) {
+            return "Posição Invalida";
+        }
+        if(!posicaoOcupada(posicao)){
             return "Não Há Nome Nessa Posição";
         }
+        return nomes[posicao];
     }
 
     public int totalNomes(){
