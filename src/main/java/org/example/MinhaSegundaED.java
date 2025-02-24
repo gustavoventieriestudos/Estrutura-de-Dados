@@ -10,8 +10,6 @@ public class MinhaSegundaED {
         return posicao > 0 && posicao <= 26  ;
     }
 
-
-
     public int getIndice(String nome) {
 
         if (!validarNome(nome)) {

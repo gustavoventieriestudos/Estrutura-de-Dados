@@ -6,8 +6,5 @@ public class Main {
     public static void main(String[] args) {
     MinhaSegundaED ED = new MinhaSegundaED();
 
-
-        System.out.println( ED.getNome(-2));
-
     }
 }
