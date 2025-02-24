@@ -74,8 +74,8 @@ public class MinhaSegundaED {
 
     public void remove(String nome){
         int posicao = getIndice(nome);
-        if (!validarIndice(posicao)) {
-            throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo.");
+        if (!validarIndice(posicao) || !nome.equals(getNome(posicao))) {
+            throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo ou Nome incorreto. Impossivel Efetuar A Ação Remover");
         }
 
         if (!posicaoOcupada(posicao)){
@@ -95,9 +95,9 @@ public class MinhaSegundaED {
         int posicao = getIndice(nome);
 
         if (!validarIndice(posicao)) {
-            throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo.");
+            throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo .");
         }
-        return nomes[posicao] != null && !nomes[posicao].isBlank();
+        return nome.equals(nomes[posicao]);
     }
 
 
@@ -106,7 +106,8 @@ public class MinhaSegundaED {
             throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo.");
         }
         if(!posicaoOcupada(posicao)){
-            return "Não Há Nome Nessa Posição";
+            System.out.println("Não Há Nome Nessa Posição");
+            return "";
         }
         return nomes[posicao];
     }

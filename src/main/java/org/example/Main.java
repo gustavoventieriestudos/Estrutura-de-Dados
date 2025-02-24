@@ -5,8 +5,6 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
     MinhaSegundaED ED = new MinhaSegundaED();
-        ED.adiciona("gustavo");
 
-        System.out.println(ED.posicaoOcupada(6));
     }
 }
