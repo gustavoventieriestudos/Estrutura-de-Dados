@@ -7,7 +7,7 @@ public class MinhaSegundaED {
     int total_nomes = 0;
 
     public boolean validarIndice(int posicao){
-        return posicao != -1 && posicao <= 26;
+        return posicao > 0 && posicao <= 26  ;
     }
 
 
@@ -55,8 +55,7 @@ public class MinhaSegundaED {
         int posicao = getIndice(nome);
 
         if (!validarIndice(posicao)) {
-            System.out.println("Posição Invalida");
-            return;
+            throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo.");
         }
         if (posicaoOcupada(posicao)){
             System.out.println("Posição Ocupada");
@@ -70,8 +69,7 @@ public class MinhaSegundaED {
 
     private boolean posicaoOcupada(int posicao){
         if (!validarIndice(posicao)) {
-            System.out.println("Posição Invalida");
-            return false;
+            throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo.");
         }
         return nomes[posicao] != null && nomes[posicao] != "";
     }
@@ -79,8 +77,7 @@ public class MinhaSegundaED {
     public void remove(String nome){
         int posicao = getIndice(nome);
         if (!validarIndice(posicao)) {
-            System.out.println("Posição Invalida");
-            return;
+            throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo.");
         }
 
         if (!posicaoOcupada(posicao)){
@@ -98,17 +95,17 @@ public class MinhaSegundaED {
 
     public boolean contem(String nome){
         int posicao = getIndice(nome);
+
         if (!validarIndice(posicao)) {
-            System.out.println("Posição Invalida");
-            return false;
+            throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo.");
         }
         return nomes[posicao] != null && nomes[posicao] != "";
     }
 
 
     public String getNome(int posicao){
-        if (!validarIndice(posicao) || posicao >= 26) {
-            return "Posição Invalida";
+        if (!validarIndice(posicao)) {
+            throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo.");
         }
         if(!posicaoOcupada(posicao)){
             return "Não Há Nome Nessa Posição";
