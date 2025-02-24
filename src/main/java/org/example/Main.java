@@ -7,6 +7,7 @@ public class Main {
     MinhaSegundaED ED = new MinhaSegundaED();
 
 
+        System.out.println( ED.getIndice("GUs"));
 
     }
 }

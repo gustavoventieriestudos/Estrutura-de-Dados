@@ -14,7 +14,7 @@ public class MinhaSegundaED {
 
     public int getIndice(String nome) {
 
-        if (nome == null || nome.isEmpty()) {
+        if (!validarNome(nome)) {
             return -1;
         }
 
@@ -89,6 +89,10 @@ public class MinhaSegundaED {
         }
         nomes[posicao] = "";
 
+    }
+
+    public boolean validarNome(String nome){
+        return nome != null && !nome.isEmpty();
     }
 
 
