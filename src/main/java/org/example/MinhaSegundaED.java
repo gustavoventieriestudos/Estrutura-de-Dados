@@ -65,11 +65,11 @@ public class MinhaSegundaED {
 
     }
 
-    private boolean posicaoOcupada(int posicao){
+    public boolean posicaoOcupada(int posicao){
         if (!validarIndice(posicao)) {
             throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo.");
         }
-        return nomes[posicao] != null && nomes[posicao] != "";
+        return nomes[posicao] != null && !nomes[posicao].isBlank();
     }
 
     public void remove(String nome){
@@ -87,7 +87,7 @@ public class MinhaSegundaED {
     }
 
     public boolean validarNome(String nome){
-        return nome != null && !nome.isEmpty();
+        return nome != null && !nome.isBlank();
     }
 
 
@@ -97,7 +97,7 @@ public class MinhaSegundaED {
         if (!validarIndice(posicao)) {
             throw new ArrayIndexOutOfBoundsException("Posição fora do intervalo.");
         }
-        return nomes[posicao] != null && nomes[posicao] != "";
+        return nomes[posicao] != null && !nomes[posicao].isBlank();
     }
 
 
