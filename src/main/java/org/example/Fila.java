@@ -1,80 +1,50 @@
 package org.example;
 
 public class Fila {
-
+    private class No {
+        Object item;
+        No prox;        
+    }
+    
     private No inicio;
     private No fim;
 
-    public Fila(){
-        this.inicio = null;  
-        this.fim = null;     
-    }
-    
-   
-    public void enfileira(Object elemento){
-        No novoNo = new No();  
-        novoNo.setItem(elemento);  
-        
-        if (vazia()) { 
-            this.inicio = novoNo;
-            this.fim = novoNo;
-        } else {
-            this.fim.setProx(novoNo); 
-            this.fim = novoNo;       
-        }
+    // Operações
+    public Fila() { //  Cria uma Fila vazia
+        this.inicio = new No();
+        this.fim = this.inicio; // fim = new No();
+        this.inicio.prox = null;
     }
 
-   
-    public Object desenfileira(){
-        if (vazia()) {
-            return null; 
-        }
-        
-        Object item = this.inicio.getItem();  
-        this.inicio = this.inicio.getProx();  
-        
-        if (this.inicio == null) {  
-            this.fim = null;
-        }
-        
-        return item; 
+    public void enfileira(Object valor) {
+        this.fim.prox = new No();
+        this.fim = this.fim.prox;
+        this.fim.item = valor;
+        this.fim.prox = null;
     }
 
-  
+    public Object desenfileira() throws Exception {
+        Object valor = null;
+        if (this.vazia()) {
+            throw new Exception("Erro: A fila esta vazia");
+        }
+        this.inicio = this.inicio.prox;
+        valor = this.inicio.item;
+        return valor;
+    }
+
     public boolean vazia() {
-        return this.inicio == null;
+        return (this.inicio == this.fim);
     }
 
-   
+
     public void imprime() {
-        No atual = this.inicio;
-        while (atual != null) {
-            System.out.print(atual.getItem() + " ");
-            atual = atual.getProx();
+        No aux;
+        aux = this.inicio.prox;
+        while (aux != null) {
+            System.out.print(" " + aux.item.toString());
+            aux = aux.prox;
         }
-        System.out.println(); 
-    }
-
-    public static void main(String[] args) throws Exception {
-        Fila fila = new Fila();
-        
-       
-        fila.enfileira(10);
-        fila.enfileira(20);
-        fila.enfileira(30);
-        
-        System.out.println("Fila após enfileirar elementos:");
-        fila.imprime();  
-        
-        System.out.println("Elemento removido: " + fila.desenfileira());
-        System.out.println("Elemento removido: " + fila.desenfileira());  
-        System.out.println("Fila após desenfileirar:");
-        fila.imprime();  
-
-        fila.enfileira(20);
-        fila.enfileira(30);
-        
-        System.out.println("Fila após enfileirar elementos:");
-        fila.imprime();  
+        System.out.println();
     }
 }
