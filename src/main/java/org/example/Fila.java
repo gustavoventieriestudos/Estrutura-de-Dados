@@ -2,65 +2,79 @@ package org.example;
 
 public class Fila {
 
-    private Object vetor[];
-    private int inicio, fim;
+    private No inicio;
+    private No fim;
 
-    // Cria uma Fila vazia
-    public Fila() {
-        this.vetor = new Object[10];
-        this.inicio = 0;
-        this.fim = this.inicio;
+    public Fila(){
+        this.inicio = null;  
+        this.fim = null;     
+    }
+    
+   
+    public void enfileira(Object elemento){
+        No novoNo = new No();  
+        novoNo.setItem(elemento);  
+        
+        if (vazia()) { 
+            this.inicio = novoNo;
+            this.fim = novoNo;
+        } else {
+            this.fim.setProx(novoNo); 
+            this.fim = novoNo;       
+        }
     }
 
-    public Fila(int maxTam) {
-        // Cria uma Fila vazia
-        this.vetor = new Object[maxTam];
-        this.inicio = 0;
-        this.fim = this.inicio;
+   
+    public Object desenfileira(){
+        if (vazia()) {
+            return null; 
+        }
+        
+        Object item = this.inicio.getItem();  
+        this.inicio = this.inicio.getProx();  
+        
+        if (this.inicio == null) {  
+            this.fim = null;
+        }
+        
+        return item; 
     }
 
+  
     public boolean vazia() {
-        return (this.inicio == this.fim);
+        return this.inicio == null;
     }
 
+   
     public void imprime() {
-        for (int i = this.inicio; i != this.fim; i++) {
-            System.out.print(this.vetor[i].toString() + " ");
+        No atual = this.inicio;
+        while (atual != null) {
+            System.out.print(atual.getItem() + " ");
+            atual = atual.getProx();
         }
-    }
-
-    public void enfileira(Object valor) throws Exception {
-        if ((this.fim + 1) > this.vetor.length) {
-            throw new Exception("Erro: A fila está cheia");
-        }
-        this.vetor[this.fim] = valor;
-        this.fim = (this.fim + 1);
-    }
-
-    public Object desenfileira() throws Exception {
-        if (this.vazia()) {
-            throw new Exception("Erro: A fila está vazia");
-        }
-        Object valor = this.vetor[this.inicio];
-        this.inicio = (this.inicio + 1) % this.vetor.length;
-        return valor;
+        System.out.println(); 
     }
 
     public static void main(String[] args) throws Exception {
         Fila fila = new Fila();
-
-      
-        fila.enfileira(10);
-        fila.enfileira(20);
-        fila.enfileira(10);
-        fila.enfileira(10);
-        fila.enfileira(20);
-        fila.enfileira(10);
-        fila.enfileira(10);
-        fila.enfileira(20);
-        fila.enfileira(10);
-        fila.enfileira(10);
         
-        fila.imprime();
+       
+        fila.enfileira(10);
+        fila.enfileira(20);
+        fila.enfileira(30);
+        
+        System.out.println("Fila após enfileirar elementos:");
+        fila.imprime();  
+        
+        System.out.println("Elemento removido: " + fila.desenfileira());
+        System.out.println("Elemento removido: " + fila.desenfileira());  
+        System.out.println("Fila após desenfileirar:");
+        fila.imprime();  
+
+        fila.enfileira(20);
+        fila.enfileira(30);
+        
+        System.out.println("Fila após enfileirar elementos:");
+        fila.imprime();  
     }
 }
